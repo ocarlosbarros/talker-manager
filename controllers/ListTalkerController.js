@@ -1,4 +1,15 @@
-const ListTalkerController = (request, response) => response.status(200).json({ message: 'OK' });
+const readFile = require('../utils/readFile');
+
+const PATHFILE = './talker.json';
+
+const ListTalkerController = (_request, response) => {
+  readFile(PATHFILE)
+  .then((content) => {
+    const contentJSON = JSON.parse(content);
+    response.status(200).json(contentJSON);
+  })
+  .catch(() => response.status(204).json([]));
+};
 
 module.exports = ListTalkerController;
 
