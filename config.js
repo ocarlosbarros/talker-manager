@@ -12,5 +12,5 @@ if (config.error) {
 }
 
 const { parsed: envs } = config; 
-console.log(envs);
+
 module.exports = envs;
