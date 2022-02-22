@@ -1,3 +1,5 @@
+const generateToken = require('../service/generateToken');
+
 const validateEmail = (email) => {
   const validRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   if (validRegex.test(email)) {
@@ -16,12 +18,12 @@ const validatePassword = (password) => {
 const allValidations = (email, password) => {
   const isValidEmail = validateEmail(email);
   const isValidPassword = validatePassword(password);
-  const token = { token: '7mqaVRXJSp886CGr' };
   if (!isValidEmail || !isValidPassword) {
     const message = !isValidEmail ? 'O "email" deve ter o formato "email@email.com"' 
-      : 'O "password" deve ter pelo menos 6 caracteres';
+    : 'O "password" deve ter pelo menos 6 caracteres';
     return { message, status: false };
   }
+  const token = generateToken(email);
   return { message: token, status: true };
 };
 
