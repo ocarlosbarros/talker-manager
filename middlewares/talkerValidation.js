@@ -32,11 +32,10 @@ const validateWatchedAt = (watchedAt) => {
 };
 
 const validateRate = (rate) => {
-  if (!rate) {
+  if (!rate && rate !== 0) {
     return { message: 'O campo "talk" é obrigatório e "watchedAt" e "rate" não podem ser vazios' };
   }
-  const numericRate = Number(rate);
-  if (numericRate > 5 || numericRate < 1) {
+  if (rate > 5 || rate < 1) {
     return { message: 'O campo "rate" deve ser um inteiro de 1 à 5' };
   }
 };
@@ -51,16 +50,6 @@ const validateTask = (talk) => {
   message = !message ? validateRate(rate) : message;
   return message;
 };
-
-// const allValidations = (name, age, talk) => {
-//   let message;
-//   message = !message ? validateName(name) : message;
-//   message = !message ? validateAge(age) : message;
-//   message = !message ? validateTask(talk) : message;
-  
-//   if (message) return { message, status: 400 };
-//   return { message, status: 200 };
-// };
 
 const talkerValidation = (request, response, next) => {
   const { name, age, talk } = request.body;
