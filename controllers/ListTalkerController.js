@@ -1,8 +1,7 @@
 const readFile = require('../utils/readFile');
-const { FILE } = require('../config');
 
 const ListTalkerController = (_request, response) => {
-  readFile(FILE)
+  readFile('./talker.json')
   .then((content) => {
     const contentJSON = JSON.parse(content);
     response.status(200).json(contentJSON);

@@ -1,9 +1,8 @@
 const readFile = require('../utils/readFile');
-const { FILE } = require('../config');
 
 const ListTalkerByIdController = (request, response) => {
   const { id } = request.params;
-  readFile(FILE)
+  readFile('./talker.json')
     .then((content) => {
       const contentJSON = JSON.parse(content);
       const talkerFound = contentJSON.find((talker) => talker.id === +id);
