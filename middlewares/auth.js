@@ -35,7 +35,6 @@ const auth = (request, response) => {
     .json({ message: `O campo "${!email ? 'email' : 'password'}" é obrigatório` });
   }
   const { message, token } = allValidations(email, password);
-  console.log('erro', message);
   if (!token) return response.status(400).json({ message });
   
   response.status(200).json(token);
