@@ -21,10 +21,10 @@ const allValidations = (email, password) => {
   if (!isValidEmail || !isValidPassword) {
     const message = !isValidEmail ? 'O "email" deve ter o formato "email@email.com"' 
     : 'O "password" deve ter pelo menos 6 caracteres';
-    return { message, status: false };
+    return { message };
   }
   const token = generateToken(email);
-  return { message: token, status: true };
+  return { token };
 };
 
 const auth = (request, response) => {
@@ -34,10 +34,11 @@ const auth = (request, response) => {
     return response.status(400)
     .json({ message: `O campo "${!email ? 'email' : 'password'}" é obrigatório` });
   }
-  const { status, message } = allValidations(email, password);
-  if (!status) return response.status(400).json({ message });
+  const { message, token } = allValidations(email, password);
+  console.log('erro', message);
+  if (!token) return response.status(400).json({ message });
   
-  response.status(200).json(message);
+  response.status(200).json(token);
 };
 
 module.exports = auth;
