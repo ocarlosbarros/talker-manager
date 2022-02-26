@@ -11,7 +11,7 @@ const DeleteTalkerController = async (request, response) => {
 
   writeFile('./talker.json', JSON.stringify(listTalkerUpdated));
   
-  response.status(204).end();
+  response.status(204).json();
 };
 
 module.exports = DeleteTalkerController;
