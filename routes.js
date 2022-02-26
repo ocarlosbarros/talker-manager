@@ -8,6 +8,7 @@ const UpdateTalkerController = require('./controllers/UpdateTalkerController');
 const auth = require('./middlewares/auth');
 const ensureAuthenticate = require('./middlewares/ensureAuthenticate');
 const talkerValidation = require('./middlewares/talkerValidation');
+const DeleteTalkerController = require('./controllers/DeleteTalkerController');
 
 const router = express.Router();
 
@@ -16,6 +17,7 @@ router.get('/talker/:id', ListTalkerByIdController);
 router.post('/login', auth);
 router.post('/talker', ensureAuthenticate, talkerValidation, CreateTalkerController);
 router.put('/talker/:id', ensureAuthenticate, talkerValidation, UpdateTalkerController);
+router.delete('/talker/:id', ensureAuthenticate, DeleteTalkerController);
 
 module.exports = router;
 
